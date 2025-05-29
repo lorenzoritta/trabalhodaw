@@ -56,6 +56,27 @@ class clienteDAO
         return $sql->fetch();
 
     }
+    public function login(cliente $cliente)
+    {
+        $sql = $this->conexao->prepare("
+        SELECT * FROM cliente WHERE email = :email OR usuario = :usuario");
+        $sql->bindValue(":email", $cliente->getEmail());
+        $sql->bindValue(":usuario", $cliente->getEmail());
+
+        $sql->execute();
+        if($sql->rowCount()>0){
+            while($retorno = $sql->fetch()){
+                if($retorno["senha"] == $cliente->getSenha()){
+
+                    return $retorno; //tudo ok! faça o login
+                }
+            }
+            return 1; // senha incorreta
+        }
+        else{
+            return 2; //email n cadastrado
+        }
+    }
 
     public function editar(cliente $cliente)
     {

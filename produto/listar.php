@@ -19,16 +19,16 @@ if (isset($_POST["editarErro"]))
 
 echo "<a href='inserir.php'>Inserir</a><br />";
 
-    $objImagemDAO = new imagemDAO();
+$objImagemDAO = new imagemDAO();
 
 foreach ($retorno as $linha) {
     echo "Nome: " . $linha["nome"];
     echo "<br/>Preço: R$" . $linha["preco"];
-  
+
 
     $retornoImg = $objImagemDAO->retornarUm($linha["id_manga"]);
-    if($retornoImg>0)
-    echo "<br/><img src='../img/".$retornoImg["nome"]."'/>";
+    if ($retornoImg > 0)
+        echo "<br/><img src='../img/" . $retornoImg["nome"] . "'/>";
 
     echo "<br/>Autor: " . $linha["autor"];
     echo "<br/>Editora: " . $linha["editora"];

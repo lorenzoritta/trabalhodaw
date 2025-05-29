@@ -4,6 +4,12 @@ include_once "../class/produtoDAO.class.php";
 $id = $_GET["id"];
 $objDAO = new ProdutoDAO();
 $retorno = $objDAO->retornarUm($id);
+
+include_once "../class/categoria.class.php";
+include_once "../class/categoriaDAO.class.php";
+$objcategoria = new categoriaDAO();
+$categoria = $objcategoria->listar();
+
 ?>
 
 <!DOCTYPE html>
@@ -18,11 +24,22 @@ $retorno = $objDAO->retornarUm($id);
 <body>
     <form action="editar_produto_ok.php" method="post">
         <input type="hidden" name="id_manga" value="<?= $retorno["id_manga"] ?>" />
-        
+
         Nome:
         <input type="text" name="nome" value="<?= $retorno["nome"] ?>" />
         <br>
-
+        
+        Categoria:
+        <select name="idcategoria">
+        <?php
+            foreach($categoria as $linha){
+                if($linha["id"] == $retorno["idcategoria"])
+                echo "<option selected value='".$linha["id"]."'>".$linha["nome"]."</option>";
+            else
+            echo "<option value='".$linha["id"]."'>".$linha["nome"]."</option>";
+            }
+        ?>
+        <br>
         Editora:
         <input type="text" name="editora" value="<?= $retorno["editora"] ?>" />
         <br>

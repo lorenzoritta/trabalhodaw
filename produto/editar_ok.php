@@ -5,7 +5,7 @@ include_once "../class/produto.class.php";
 include_once "../class/produtoDAO.class.php";
 
 $obj = new Produto();
-$obj->setId_manga($_POST["manga"]);
+$obj->setId_manga($_POST["id_manga"]);
 $obj->setNome($_POST["nome"]);
 $obj->setEditora($_POST["editora"]);
 $obj->setDescricao($_POST["descricao"]);

@@ -1,3 +1,11 @@
+<?php
+    include_once "../class/categoria.class.php";
+    include_once "../class/categoriaDAO.class.php";
+    $objcategoria = new categoriaDAO();
+    $categoria = $objcategoria->listar();
+
+?>  
+
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -32,6 +40,15 @@
         <br>
         Número de Volumes:
         <input type="number" name="num_volumes" required />
+        <br>
+        Categoria:
+        <select name="idcategoria">
+        <?php
+            foreach($categoria as $linha){
+                echo "<option value='".$linha["id"]."'>".$linha["nome"].    "</option>";
+            }
+        ?>
+        </select>
         <br>
         imagem:
         <input type="file" name="imagem[]" multiple />
