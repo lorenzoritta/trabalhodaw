@@ -42,10 +42,10 @@
         <input type="number" name="num_volumes" required />
         <br>
         Categoria:
-        <select name="idcategoria">
+        <select name="id_categoria">
         <?php
             foreach($categoria as $linha){
-                echo "<option value='".$linha["id"]."'>".$linha["nome"].    "</option>";
+                echo "<option value='".$linha["id_categoria"]."'>".$linha["nome"].    "</option>";
             }
         ?>
         </select>

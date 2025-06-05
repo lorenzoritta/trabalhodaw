@@ -37,7 +37,8 @@ $categoria = $objcategoria->listar();
                 echo "<option selected value='".$linha["id"]."'>".$linha["nome"]."</option>";
             else
             echo "<option value='".$linha["id"]."'>".$linha["nome"]."</option>";
-            }
+            
+        }
         ?>
         <br>
         Editora:

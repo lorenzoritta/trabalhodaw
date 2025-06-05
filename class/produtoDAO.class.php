@@ -15,9 +15,10 @@ class ProdutoDAO
         );
     }
 
-    public function listar()
+    public function listar($complemento = "")
     {
-        $sql = $this->conexao->prepare("SELECT * FROM mangas");
+        $sql = $this->conexao->prepare("SELECT mangas.*, categoria.nome as categoria FROM mangas 
+        INNER JOIN categoria on mangas.id_categoria = categoria.id_categoria ". $complemento);
         $sql->execute();
         return $sql->fetchAll();
     }
@@ -26,9 +27,9 @@ class ProdutoDAO
     {
         $sql = $this->conexao->prepare("
             INSERT INTO mangas 
-            (nome, editora, descricao, autor, preco, data_lancamento, pais_origem, num_volumes, ofertar)
+            (nome, editora, descricao, autor, preco, data_lancamento, pais_origem, num_volumes, ofertar, id_categoria)
             VALUES
-            (:nome, :editora, :descricao, :autor, :preco, :data_lancamento, :pais_origem, :num_volumes, :ofertar)
+            (:nome, :editora, :descricao, :autor, :preco, :data_lancamento, :pais_origem, :num_volumes, :ofertar, :id_categoria)
         ");
 
 
@@ -42,6 +43,7 @@ class ProdutoDAO
         $sql->bindValue(":pais_origem", $produto->getPais_origem());
         $sql->bindValue(":num_volumes", $produto->getNum_volumes());
         $sql->bindValue(":ofertar", $produto->getOfertar());
+        $sql->bindValue(":id_categoria", $produto->getId_categoria());
 
 
         $sql->execute();
@@ -82,6 +84,7 @@ class ProdutoDAO
                 pais_origem = :pais_origem,
                 num_volumes = :num_volumes
                 ofertar = :ofertar,
+                id_categoria = :id_categoria
                 WHERE id_manga = :id_manga
         ");
 
@@ -95,6 +98,7 @@ class ProdutoDAO
         $sql->bindValue(":pais_origem", $produto->getPais_origem());
         $sql->bindValue(":num_volumes", $produto->getNum_volumes());
         $sql->bindValue(":ofertar", $produto->getOfertar());
+        $sql->bindValue(":id_categoria", $produto->getId_categoria());
 
         return $sql->execute();
     }

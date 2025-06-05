@@ -10,7 +10,7 @@ class categoria
     }
     public function setId_categoria($valor)
     {
-        $this->idcliente = $valor;
+        $this->id_categoria = $valor;
     }
     public function getNome()
     {

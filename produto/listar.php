@@ -23,16 +23,15 @@ $objImagemDAO = new imagemDAO();
 
 foreach ($retorno as $linha) {
     echo "Nome: " . $linha["nome"];
-    echo "<br/>Preço: R$" . $linha["preco"];
-
-
-    $retornoImg = $objImagemDAO->retornarUm($linha["id_manga"]);
-    if ($retornoImg > 0)
-        echo "<br/><img src='../img/" . $retornoImg["nome"] . "'/>";
-
+    echo "<br />Categoria:" . $linha["categoria"];
+    echo "<br/>Preço: R$" . $linha["preco"];   
     echo "<br/>Autor: " . $linha["autor"];
     echo "<br/>Editora: " . $linha["editora"];
     echo "<br/>Data de Lançamento: " . $linha["data_lancamento"];
+    $retornoImg = $objImagemDAO->retornarUm($linha["id_manga"]);
+    if ($retornoImg > 0)
+    echo "<br/><img src='../img/" . $retornoImg["nome"] . "'/>";
+
     echo "<br/>
         <a href='editar.php?id=" . $linha["id_manga"] . "'>Editar</a>
         <a href='excluir.php?id=" . $linha["id_manga"] . "'>Excluir</a>

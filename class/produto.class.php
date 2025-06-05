@@ -11,6 +11,7 @@ class Produto
     private $pais_origem;
     private $num_volumes;
     private $ofertar;
+    private $id_categoria;
 
     public function getId_manga()
     {
@@ -110,6 +111,16 @@ class Produto
     public function setOfertar($valor)
     {
         $this->ofertar = $valor;
+    }
+
+    public function getId_categoria()
+    {
+        return $this->id_categoria;
+    }
+
+    public function setId_categoria($valor)
+    {
+        $this->id_categoria = $valor;
     }
 }
 ?>

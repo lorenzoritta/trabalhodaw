@@ -17,6 +17,7 @@ $obj->setData_lancamento($_POST["data_lancamento"]);
 $obj->setPais_origem($_POST["pais_origem"]);
 $obj->setNum_volumes($_POST["num_volumes"]);
 $obj->setOfertar(0);
+$obj->setId_categoria( $_POST["id_categoria"]);
 
 $objDAO = new ProdutoDAO();
 $retorno = $objDAO->inserir($obj);
